@@ -25,7 +25,8 @@
         .task-form button {
             width: 85%;
         }
-    </style>
+    </style>.
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -63,3 +64,6 @@ $rows = 8;
         <button type="submit">Search</button>
     </div>
 </form>
+<script>
+
+</script>

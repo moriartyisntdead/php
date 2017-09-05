@@ -26,7 +26,7 @@
             width: 85%;
         }
     </style>.
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
@@ -59,11 +59,28 @@ $rows = 8;
 </table>
 <form action="../test.php" method="post">
     <div class="task-form">
-        <input type="text" placeholder="Enter data" name='data' value="1234567896562676">
-        <input type="text" placeholder="Enter required number" name="number" value="6">
-        <button type="submit">Search</button>
+        <input type="text" placeholder="Enter data" id='date' name='data' value="1234567896562676">
+        <input type="text" placeholder="Enter required number" id="number" name="number" value="6">
+        <button type="submit" id="btn1">Search</button>
     </div>
 </form>
 <script>
-
+    $('#btn1').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '../test.php',
+            type: "POST",
+            data: {
+                data: $('#date').val(),
+                number: $('#number').val()
+            },
+            success: function (data) {
+                var result = $.parseJSON(data);
+                console.log(result);
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        })
+    });
 </script>

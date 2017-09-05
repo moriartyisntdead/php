@@ -3,6 +3,9 @@ $counter;
 if (isset($_COOKIE['counter']) && is_int($_COOKIE['counter'])) {
     $counter = $_COOKIE['counter'];
 } else $counter = 0;
+
+echo gettype($_COOKIE['counter']);
+
 $counter++;
 setcookie('counter', $counter);
 echo "Вы здесь были уже " . $counter . " раз. <br>";

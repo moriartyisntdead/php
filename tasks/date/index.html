@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cbalink {
+            display: none;
+        }
+
+        main.wrapper {
+            width: 25%;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .data-output {
+            float: right;
+            border: 1px solid darkgrey;
+            background-color: darkgrey;
+            width: 1000px;
+            padding: 25px;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .button {
+            width: 150px;
+            display: block;
+            height: 25px;
+            margin: 0 auto 10px;
+        }
+
+        #clean {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #date {
+            margin-bottom: 10px;
+            height: 25px;
+            width: 150px;
+        }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<pre class="data-output">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias at cum deserunt dignissimos doloribus eos eveniet fu
+    git illum ipsam molestiae nam praesentium, quae repellendus repudiandae sint suscipit voluptatibus? Nulla, voluptate?
+    <button id="clean">Clean all</button>
+    </pre>
+<main class="wrapper">
+    <input type="text" id="date" placeholder="Enter date">
+    <button data-type="day" class="button">Get day</button>
+    <button data-type="month" class="button">Get month</button>
+    <button data-type="year" class="button">Get year</button>
+</main>
+
+<script>
+    $('.button').click(function () {
+        var type = $(this).data('type');
+        $.ajax({
+            url: '../menu.php',
+            type: 'POST',
+            data: {
+                type: type,
+                date: $('#date').val()
+            },
+            success: function (data) {
+                var result = $.parseJSON(data);
+                console.log(result);
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        })
+    });
+
+
+    $('#btn1').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '../test.php',
+            type: "POST",
+            data: {
+                date: $('#date').val(),
+                number: $('#number').val()
+            },
+            success: function (data) {
+                var result = $.parseJSON(data);
+                console.log(result);
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        })
+    });
+</script>
+</body>
+</html>

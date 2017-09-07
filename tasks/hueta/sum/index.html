@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cbalink {
+            display: none;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            width: 250px;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        #input-data, #btn {
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: white;
+        }
+    </style>
+    <script src="../../jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <input type="text" id="input-data" placeholder="Enter a number" value="123">
+    <button id="btn">Calculate</button>
+    <pre></pre>
+</div>
+<script>
+    $('#btn').click(function () {
+        $.ajax({
+            url: 'script.php',
+            type: "POST",
+            data: {
+                number: $('#input-data').val()
+            },
+            success: function (data) {
+                var result = $.parseJSON(data);
+                $('pre').append(
+                    'Sum is ' + result.result + '\n'
+                );
+                console.log(result);
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        })
+    });
+    $('#input-data').keypress(function (e) {
+        var char = getChar(e);
+        if (char < '0' || char > '9'){
+            return false;
+        }
+    });
+    function getChar(value) {
+        return String.fromCharCode(value.keyCode);
+    }
+
+</script>
+</body>
+</html>

@@ -12,15 +12,15 @@ class DateObj{
     }
 
     function getDay(){
-        echo $this->day;
+        return $this->day;
     }
 
     function getMonth(){
-        echo $this->month;
+        return $this->month;
     }
 
     function getYear(){
-        echo $this->year;
+        return $this->year;
     }
 
     function setDate($date){
@@ -29,7 +29,11 @@ class DateObj{
 
     function consoleLog($qwerty){
          echo '<script>console.log("' .$qwerty . '");</script>';
+    }
 
+    function returnSmth($data){
+        echo json_encode($data);
+        exit;
     }
 
     private function checkDate($date){
@@ -61,7 +65,7 @@ class DateObj{
             $this->day = $matches[3];
             $this->month = $matches[2];
             $this->year = $matches[1];
-        } else echo "Date isn't valid";
+        } else $this->returnSmth("Date isn't valid");
     }
 
 }
@@ -71,37 +75,22 @@ $date = $_POST['date'];
 
 $object = new DateObj($date);
 $result;
+$type1;
 
-switch ($type){
+switch ($type) {
     case "day":
         $result = $object->getDay();
+        $type1 = 'getDay()';
+        break;
+    case "month":
+        $result = $object->getMonth();
+        $type1 = 'getMonth()';
+        break;
+    case "year":
+        $result = $object->getYear();
+        $type1 = 'getYear()';
         break;
 }
-echo json_encode($result);
-/*//$test = new DateObj('5-9-2017');
-$test = new DateObj('2017-9-5');
-echo  "Today " . $test->date;
-echo  "<br> The day is " . $test->day;
-echo  "<br> The month is " . $test->month;
-echo  "<br> The year is " . $test->year;*/
+$object->returnSmth(['type'=> $type1, 'date' => $date, 'result' => $result]);
 
 ?>
-
-<!--<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .cbalink {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-
-</body>
-</html>-->

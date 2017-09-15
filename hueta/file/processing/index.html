@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cbalink {
+            display: none;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            width: 250px;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        input[type="file"], button {
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: white;
+        }
+    </style>
+    <script src="../../../jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <form enctype="multipart/form-data" action="script.php" method="post">
+        <input type="file" name="file" id="file">
+        <button type="submit">Отправить форму</button>
+    </form>
+</div>
+</body>
+</html>
